@@ -1,2 +1,11 @@
-<h1>All Tracks</h1>
-duuuuude!
+<h1>Track List</h1>
+<p>*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_</p>
+
+<% @tracks.each do |track| %>
+  <div class="message">
+    <h3>"<%= track.song_title %>" - <%= track.author %></h3>
+    <p><%= track.url %></p>
+    <p><small>Uploaded at: <%= track.created_at %></small></p>
+    <hr/>
+  </div>
+<% end %>
