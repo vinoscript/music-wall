@@ -8,4 +8,8 @@ get '/tracks' do
   erb :'tracks/index'
 end
 
+get '/tracks/new' do
+  erb :'tracks/new'
+end
+
 
