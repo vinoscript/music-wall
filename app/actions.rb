@@ -9,12 +9,13 @@ get '/tracks' do
 end
 
 get '/tracks/new' do
-  @message = Message.new
+  @track = Track.new
   erb :'tracks/new'
 end
 
 get '/tracks/:id' do
   @track = Track.find params[:id]
+  @tracks_by_author = Track.where(author: @track.author).where.not(id: params[:id])
   erb :'tracks/show'
 end
 
