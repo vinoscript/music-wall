@@ -1,7 +1,7 @@
 <h1>Post a Track!</h1>
 <hr/>
 
-<% if @track && @track.errors.any? %>
+<% if @track.errors.any? %>
   <div>
     <strong>Some issues with your track, please fix them:</strong>
     <ul>
@@ -15,15 +15,15 @@
 <form method="post" action="/tracks">
   <div>
     <label>Song title:</label>
-    <input type="text" name="song_title">
+    <input type="text" name="song_title" value="<%= @track.song_title %>">
   </div>
   <div>
     <label>Author:</label>
-    <input type="text" name="author">
+    <input type="text" name="author" value="<%= @track.author %>">
   </div>
   <div>
     <label>URL (optional):</label>
-    <input type="text" name="url">
+    <input type="text" name="url" value="<%= @track.url %>">
   </div>
   <div>
     <input type="submit" value="Submit">

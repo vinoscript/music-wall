@@ -9,6 +9,7 @@ get '/tracks' do
 end
 
 get '/tracks/new' do
+  @message = Message.new
   erb :'tracks/new'
 end
 
