@@ -1,6 +1,17 @@
 <h1>Post a Track!</h1>
 <hr/>
 
+<% if @track && @track.errors.any? %>
+  <div>
+    <strong>Some issues with your track, please fix them:</strong>
+    <ul>
+      <% @track.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <form method="post" action="/tracks">
   <div>
     <label>Song title:</label>
