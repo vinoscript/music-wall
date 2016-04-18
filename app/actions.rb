@@ -12,6 +12,11 @@ get '/tracks/new' do
   erb :'tracks/new'
 end
 
+get '/tracks/:id' do
+  @track = Track.find params[:id]
+  erb :'tracks/show'
+end
+
 post '/tracks' do
   @track = Track.new(
     song_title: params[:song_title],
@@ -21,5 +26,6 @@ post '/tracks' do
   @track.save
   redirect '/tracks'
 end
+
 
 
