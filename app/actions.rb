@@ -1,3 +1,5 @@
+enable :sessions
+
 # Homepage (Root path)
 get '/' do
   erb :index
@@ -6,6 +8,32 @@ end
 get '/tracks' do
   @tracks = Track.all
   erb :'tracks/index'
+end
+
+get '/users/register' do
+  @user = User.new
+  erb :'users/register'
+end
+
+post '/users' do
+  @user = User.new(
+    email: params[:email],
+    password: params[:password]
+  )
+  if @user.save
+    redirect '/users'
+  else
+    erb :'users/register'
+  end
+end
+
+get '/users/login' do
+  erb :'users/login'
+end
+
+get '/users' do
+  @users = User.all
+  erb :'users/index'
 end
 
 get '/tracks/new' do
@@ -31,4 +59,6 @@ post '/tracks' do
     erb :'tracks/new'
   end
 end
+
+
 
