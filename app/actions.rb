@@ -1,10 +1,28 @@
 enable :sessions
 
+# before do
+#   @user = User.find(session[:user_id]) || nil
+#   # if session[:user_id]
+#   #   @user = User.find(session[:user_id])
+#   # end
+# end
+
+helpers do
+
+  def current_user
+    if session[:user_id] && session[:user_id] != ""
+      User.find(session[:user_id])
+    end
+  end
+
+end
+
 # Homepage (Root path)
 get '/' do
   erb :index
 end
 
+# TRACKS Section
 get '/tracks' do
   @tracks = Track.all
   erb :'tracks/index'
@@ -34,7 +52,7 @@ get '/tracks/:id' do
   erb :'tracks/show'
 end
 
-
+# USERS section
 get '/users' do
   @users = User.all
   erb :'users/index'
@@ -42,7 +60,6 @@ end
 
 get '/users/register' do
   @user = User.new
-  @logged_in = session[:name]
   erb :'users/register'
 end
 
@@ -52,7 +69,7 @@ post '/users' do
     password: params[:password]
   )
   if @user.save
-    session[:name] = @user.id
+    session[:user_id] = @user.id
     redirect '/users'
   else
     erb :'users/register'
@@ -64,9 +81,10 @@ get '/users/login' do
 end
 
 post '/users/login' do
-  @user = User.find_by(email: params[:email])
-    if @user.password == params[:password]
-      session[:name] = @user.id
+  user = User.find_by(email: params[:email])
+    if user.password == params[:password]
+      session[:user_id] = user.id
+      # @logged_in = session[:user_id]
       redirect '/users/details'
     else
       erb :'users/login'
@@ -78,13 +96,11 @@ get '/users/logout' do
 end
 
 post '/users/logout' do
-  @user = User.find_by(email: params[:email])
-    session[:name] = nil
+    session[:user_id] = nil
     redirect '/users/logout'
 end
 
 get '/users/details' do
-  @user = User.find session[:name]
   erb :'users/details'
 end
 

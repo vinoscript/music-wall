@@ -23,6 +23,22 @@
   <h1>TRACKS</h1>
   <p>*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_</p>
 
+  <% if current_user %>
+
+    <form method="POST" action="/users/logout">
+      <input class="btn btn-danger" type="submit" value="Logout">
+      <span>Hi there -> <%= current_user.email %> <- </span>
+    </form>
+
+  <% else %>
+
+    <a href="/users/login" class="btn btn-primary btn-xs">LOG IN</a>
+    <a href="/users/register" class="btn btn-primary">REGISTER</a>
+
+  <% end %>
+
+  
+
   <%= yield %>
 
   <div>
@@ -30,9 +46,7 @@
     <br>
     <p>*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_</p>
     <br>
-    <button>LOG IN</button>
-    <button>LOG OUT</button>
-    <button>REGISTER</button>
+
   </div>
 
 </body>
