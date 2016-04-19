@@ -1,5 +1,4 @@
-<h1>Become a TRACKS Member!</h1>
-<hr/>
+<h4>Become a TRACKS Member!</h4>
 
 <% if @user.errors.any? %>
   <div>
@@ -11,8 +10,6 @@
     </ul>
   </div>
 <% end %>
-
-<p>Hi there, User: <%= @logged_in %></p>
 
 <form method="post" action="/users">
   <div>

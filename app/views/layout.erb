@@ -27,7 +27,7 @@
 
     <form method="POST" action="/users/logout">
       <input class="btn btn-danger" type="submit" value="Logout">
-      <span>Hi there -> <%= current_user.email %> <- </span>
+      <span>Hi there, <%= current_user.email %>!</span>
     </form>
 
   <% else %>
@@ -37,17 +37,9 @@
 
   <% end %>
 
-  
 
   <%= yield %>
 
-  <div>
-    <br>
-    <br>
-    <p>*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_</p>
-    <br>
-
-  </div>
 
 </body>
 </html>
