@@ -1,23 +1,23 @@
 <h1><%= @track.song_title %></h1>
 
 <div>
-  <p>Author: <%= @track.author %></p>
+  <p>Artist: <%= @track.author %></p>
 
   <p><%= @track.url  %></p>
 
-  <p><small>Posted at: <%= @track.created_at %></small></p>
+  <p><small>Posted by: <%= @track.user.name %> at: <%= @track.created_at %></small></p>
 </div>
 
 <hr/>
 
 <div>
-  <h3>Other tracks by this author:</h3>
+  <h4>Other TRACKS submitted by this User:</h4>
 
-  <% @tracks_by_author.each do |track| %>
+  <% @other_tracks_by_user.each do |track| %>
     <p><small>
       <strong><a href="/tracks/<%= track.id %>"><%= track.song_title %></a></strong>   
       <a href="http://<%= track.url %>"><%= track.url %></a>
-      Posted at: <%= track.created_at %>
+      Posted by: <%= track.user.name %> at: <%= track.created_at %>
     </small></p>
   <% end %>
 

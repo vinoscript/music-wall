@@ -12,6 +12,8 @@ helpers do
   def current_user
     if session[:user_id] && session[:user_id] != ""
       User.find(session[:user_id])
+    # else
+    #   nil
     end
   end
 
@@ -37,7 +39,9 @@ post '/tracks' do
   @track = Track.new(
     song_title: params[:song_title],
     author: params[:author],
-    url: params[:url]
+    url: params[:url],
+    # user: current_user
+    user_id: current_user.id
   )
   if @track.save
     redirect '/tracks'
@@ -48,7 +52,7 @@ end
 
 get '/tracks/:id' do
   @track = Track.find params[:id]
-  @tracks_by_author = Track.where(author: @track.author).where.not(id: params[:id])
+  @other_tracks_by_user = Track.where(user_id: @track.user_id).where.not(id: params[:id])
   erb :'tracks/show'
 end
 
