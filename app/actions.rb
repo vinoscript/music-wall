@@ -108,6 +108,12 @@ get '/users/details' do
   erb :'users/details'
 end
 
+# VOTE section
+
+post '/vote' do
+  
+end
+
 
 
 
