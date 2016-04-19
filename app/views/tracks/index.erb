@@ -3,8 +3,8 @@
 
 <% @tracks.each do |track| %>
   <div class="message">
-    <h3><a href="/tracks/<%= track.id %>"> "<%= track.song_title %>" - <%= track.author %></a></h3>
-    <p><%= track.url %></p>
+    <h3>"<a href="/tracks/<%= track.id %>"><%= track.song_title %></a>" - <%= track.author %></h3>
+    <%= track.url %>
     <hr/>
   </div>
 <% end %>
