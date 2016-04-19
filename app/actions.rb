@@ -73,6 +73,16 @@ post '/users/login' do
     end
 end
 
+get '/users/logout' do
+  erb :'users/logout'
+end
+
+post '/users/logout' do
+  @user = User.find_by(email: params[:email])
+    session[:name] = nil
+    redirect '/users/logout'
+end
+
 get '/users/details' do
   @user = User.find session[:name]
   erb :'users/details'
