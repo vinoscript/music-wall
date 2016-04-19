@@ -25,15 +25,19 @@
 
   <% if current_user %>
 
-    <form method="POST" action="/users/logout">
-      <input class="btn btn-danger" type="submit" value="Logout">
-      <span>Hi there, <%= current_user.email %>!</span>
+    <p>Hi there, <%= current_user.name %>!</p>
+
+    <form method="POST" action="/users/logout">      
+      <a href="/tracks" class="btn btn-primary">View TRACKS</a>
+      <a href="/tracks/new" class="btn btn-danger">Post TRACK</a>
+      <input class="btn btn-default" type="submit" value="Logout">
     </form>
 
   <% else %>
 
-    <a href="/users/login" class="btn btn-primary">LOG IN</a>
-    <a href="/users/register" class="btn btn-primary">REGISTER</a>
+    <a href="/tracks" class="btn btn-primary">View TRACKS</a>
+    <a href="/users/login" class="btn btn-success">LOG IN</a>
+    <a href="/users/register" class="btn btn-warning">REGISTER</a>
 
   <% end %>
 
