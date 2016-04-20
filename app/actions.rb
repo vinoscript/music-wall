@@ -27,6 +27,7 @@ end
 # TRACKS Section
 get '/tracks' do
   @tracks = Track.all
+  # @vote_score = Vote.where(track_id: @track.id).sum("score")
   erb :'tracks/index'
 end
 
@@ -121,7 +122,7 @@ post '/vote' do
     vote = Vote.new(track_id: params[:song], user_id: current_user, score: -1)
     vote.save
   end
-  redirect '/tracks/' + params[:song]
+  redirect back
 end
 
 

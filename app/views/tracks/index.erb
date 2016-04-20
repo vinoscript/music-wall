@@ -1,11 +1,24 @@
-
-
+<h3>Top TRACKS List</h3>
+<br>
 
 <% @tracks.each do |track| %>
+
   <div class="message">
-    <h3>"<a href="/tracks/<%= track.id %>"><%= track.song_title %></a>" - <%= track.author %></h3>
-    <%= track.url %>
+    <h4>"<a href="/tracks/<%= track.id %>"><%= track.song_title %></a>" - <%= track.author %> <small> - <%= track.url %></small></h4>
+
+    <p><% vote_score = Vote.where(track_id: track.id).sum("score") %>
+    
+    <span> CURRENT SCORE: <%= vote_score %> </span>    
+
+    <form method="POST" action="/vote">    
+      <input type="hidden" name="song" value="<%= track.id %>">
+      <input class="btn btn-success" type="submit" name="vote" value="Upvote">
+      <input class="btn btn-danger" type="submit" name="vote" value="Downvote">
+    </p>
+    </form>
+
     <hr/>
   </div>
+
 <% end %>
 
