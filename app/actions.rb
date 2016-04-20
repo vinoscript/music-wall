@@ -121,6 +121,7 @@ post '/vote' do
     vote = Vote.new(track_id: params[:song], user_id: current_user, score: -1)
     vote.save
   end
+  redirect '/tracks/' + params[:song]
 end
 
 
