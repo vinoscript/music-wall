@@ -27,6 +27,7 @@ end
 # TRACKS Section
 get '/tracks' do
   @tracks = Track.all
+  @ordered_tracks = Track.joins("LEFT JOIN votes on tracks.id = votes.track_id").order("sum(votes.score) DESC").group("tracks.id")
   # @vote_score = Vote.where(track_id: @track.id).sum("score")
   erb :'tracks/index'
 end

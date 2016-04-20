@@ -1,7 +1,7 @@
 <h3>Top TRACKS List</h3>
 <br>
 
-<% @tracks.each do |track| %>
+<% @ordered_tracks.each do |track| %>
 
   <div class="message">
     <h4>"<a href="/tracks/<%= track.id %>"><%= track.song_title %></a>" - <%= track.author %> <small> - <%= track.url %></small></h4>
