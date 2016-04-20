@@ -53,6 +53,7 @@ end
 get '/tracks/:id' do
   @track = Track.find params[:id]
   @other_tracks_by_user = Track.where(user_id: @track.user_id).where.not(id: params[:id])
+  @vote_score = Vote.where(track_id: @track.id).sum("score")
   erb :'tracks/show'
 end
 
@@ -111,9 +112,16 @@ end
 # VOTE section
 
 post '/vote' do
-  
+  puts params.inspect
+  # params[:song] has track id
+  if params[:vote] == "Upvote"
+    vote = Vote.new(track_id: params[:song], user_id: current_user, score: 1)
+    vote.save
+  elsif params[:vote] == "Downvote"
+    vote = Vote.new(track_id: params[:song], user_id: current_user, score: -1)
+    vote.save
+  end
 end
-
 
 
 
